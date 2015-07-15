@@ -5,7 +5,7 @@ description of the categorical variables.
 
 """
 
-from Mscthesis.Plotting import general_plot
+from ..Plotting import general_plot
 import numpy as np
 import pandas as pd
 

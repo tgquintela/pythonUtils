@@ -10,7 +10,7 @@ Not predefined date range.
 
 import numpy as np
 import datetime
-from Mscthesis.Plotting import general_plot
+from ..Plotting import general_plot
 
 
 def compute_temp_describe(df, info_var):

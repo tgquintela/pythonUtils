@@ -4,7 +4,7 @@ Module which groups all the related function of the compute of statistics in
 coordinates data.
 """
 
-from Mscthesis.Plotting import general_plot
+from ..Plotting import general_plot
 
 
 def compute_coord_describe(df, info_var):

@@ -7,7 +7,7 @@ and its distributions.
 import pandas as pd
 import numpy as np
 
-from Mscthesis.Plotting import general_plot
+from ..Plotting import general_plot
 
 
 def compute_tmpdist_describe(df, info_var):

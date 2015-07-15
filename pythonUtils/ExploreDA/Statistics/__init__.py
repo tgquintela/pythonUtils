@@ -10,9 +10,10 @@ from stats_functions import compute_stats
 from utils import clean_dict_stats
 import time
 
-from Mscthesis.IO.parse_data import parse_instructions_file
-from Mscthesis.IO.output_to_latex import describe2latex
-from Mscthesis.IO.write_log import Logger
+from ..IO.parse_data import parse_instructions_file
+from ..IO.output_to_latex import describe2latex
+
+from pythonUtils.Logger import Logger
 
 
 ########### Global variables needed
@@ -41,6 +42,7 @@ class Statistics():
     Check if the variables in the info are in the dataframe and act in
     consequence.
     create plots function to create from stats the plots.
+    - Transform this class as a Processer
 
     """
 
