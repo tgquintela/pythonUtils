@@ -160,4 +160,4 @@ def initial_message_creation(proc_name, proc_desc):
     line1 = "Start process %s:" % proc_name
     line2 = "-" * len(line1)
     line3 = "(%s)" % proc_desc
-    return line0+"/n"+line1+"/n"+line2+"/n"+line3+"/n/n"
+    return line0+"\n"+line1+"\n"+line2+"\n"+line3+"\n\n"
