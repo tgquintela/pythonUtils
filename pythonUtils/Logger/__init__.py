@@ -29,7 +29,7 @@ class Logger:
         """Function to write and/or display in a screen a message."""
         if display:
             print message
-        append_line_file(self.logfile, message+'\n')
+        append_line_file(self.logfile, message)  # +'\n')
 
     def mark_datetime(self, message=''):
         """Function to write the datetime in this momment."""
