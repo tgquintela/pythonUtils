@@ -27,6 +27,7 @@ Start process %s:
 """
 message1 = "%s: "
 message2 = "completed in %f seconds.\n"
+message_init_loop = "Total number of iterations to compute: %s"
 message_loop = " %s bunch of %s iterations completed in %f seconds.\n"
 
 message_close0 = '-'*70
@@ -70,6 +71,11 @@ class Processer():
                'proc_name': self.proc_name, 'lim_rows': self.lim_rows,
                'logfile': self.logfile}
         return out
+
+    def setting_loop(self, N_t):
+        self.logfile.write_log(message_init_loop % str(N_t))
+        t0, bun = time.time(), 0
+        return t0, bun
 
     def messaging_loop(self, i, t0, bun):
         "Message into the loop."
