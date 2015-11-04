@@ -1,8 +1,8 @@
-﻿#!/bin/bash
+#!/bin/bash
 # Install
 sudo python setup.py install
-# clean files
-rm -r build/
-rm -r dist/
-rm -r pythonUtils.egg-info/
+# Deleting trash files
+sudo rm -r build/
+sudo rm -r dist/
+sudo rm -r pythonUtils.egg-info/
 

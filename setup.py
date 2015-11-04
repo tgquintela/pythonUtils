@@ -59,8 +59,8 @@ setup(name='pythonUtils',
 		'pythonUtils.ExploreDA.Plotting', 'pythonUtils.Logger',
 		'pythonUtils.ProcessTools', 'pythonUtils.TUI_tools',
 		'pythonUtils.numpy_tools', 'pythonUtils.TesterResults'],
-      install_requires=['numpy', 'scipy', 'matplotlib', 'pandas',
-			'python-mpltoolkits.basemap', 'datetime',
-			'python-dateutil'],
+      install_requires=['numpy', 'scipy'], #'matplotlib', 'pandas',
+			#'datetime', #'python-mpltoolkits.basemap'
+			#'python-dateutil'],
 )
 
