@@ -6,7 +6,8 @@ Tools using for making stats.
 
 """
 
-votation = counting(feat_arr[neighs], weights, n_vals)
+import numpy as np
+
 
 def counting(array, weights, n_vals):
     """Counting function.
