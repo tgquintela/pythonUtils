@@ -30,7 +30,7 @@ message2 = "completed in %f seconds.\n"
 message_init_loop = "Total number of iterations to compute: %s"
 message_loop = " %s bunch of %s iterations completed in %f seconds.\n"
 
-message_close0 = '-'*70
+message_close0 = '-'*70+"\n"
 message_last = "Total time expended computing the process: %f seconds.\n"
 message_close = '-'*70+'\n'
 ###############################################################################
