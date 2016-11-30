@@ -1,6 +1,8 @@
 
-'''
-Module which serves as a interactor between the possible database with the 
+"""
+automatic_questioner
+--------------------
+Module which serves as a interactor between the possible database with the
 described structure and which contains information about functions and
 variables of other packages.
 
@@ -27,7 +29,7 @@ variables of other packages.
 # }}
 
 #TODO: checker 1 function with list of functions and dicts of dicts
-'''
+"""
 
 from tui_questioner import general_questioner
 
@@ -504,97 +506,3 @@ def automatic_questioner3(function_name, db, choosen={}):
                                                                   aggvarval)
 
     return choosen_values
-
-''' TO DEPRECATE
-
-def authomatic_questioner(function_name, db):
-    """Function which carry out the authomatic questioning task.
-    """
-
-    choosen_values = {}
-    if function_name in db.keys():
-        data_f = db[function_name]
-    else:
-        return choosen_values
-
-    # Put the variables
-    for var in data_f['variables'].keys():
-        question = data_f['variables'][var]['question_info']
-        choosen_values[var] = general_questioner(**question)
-
-    # Put aggregated variables (descendants)
-    for i in range(len(data_f['descendants'])):
-        vars_values = data_f['descendants'][i]['variable_values']
-        agg_param = data_f['descendants'][i]['parameters']
-        variables = vars_values.keys()
-        for var in variables:
-            if var in choosen_values.keys():
-                # Obtain function_name
-                f_name = vars_values[var][choosen_values[var]]
-                # Recurrent call
-                choosen_values[agg_param] = authomatic_questioner(f_name, db)
-
-    return choosen_values
-
-
-def authomatic_questioner(function_name, db):
-    """Function which carry out the authomatic questioning task.
-    """
-
-    choosen_values = {}
-    if function_name in db.keys():
-        data_f = db[function_name]
-    else:
-        return choosen_values
-
-    # Put the variables
-    for var in data_f['variables'].keys():
-        question = data_f['variables'][var]['question_info']
-        choosen_values[var] = general_questioner(**question)
-
-    # Put aggregated variables (descendants)
-    for i in range(len(data_f['descendants'])):
-        vars_values = data_f['descendants'][i]['variable_values']
-        agg_param = data_f['descendants'][i]['parameters']
-        variables = vars_values.keys()
-        for var in variables:
-            if var in choosen_values.keys():
-                # Obtain function_name
-                f_name = vars_values[var][choosen_values[var]]
-                # Recurrent call
-                choosen_values[agg_param] = authomatic_questioner(f_name, db)
-
-    return choosen_values
-
-
-def get_default(function_name, db):
-    """Function which returns a dictionary of choosen values by default.
-
-    -----
-    TODO: Possibility of being integrated with authomatic_questioner after
-    testing.
-    """
-
-    data_f = db[function_name]
-    choosen_values = {}
-
-    # Put the variables
-    for var in data_f['variables'].keys():
-        default = data_f['variables'][var]['default']
-        choosen_values[var] = default
-
-    # Put aggregated variables (descendants)
-    for i in range(len(data_f['descendants'])):
-        vars_values = data_f['descendants'][i]['variable_values']
-        agg_param = data_f['descendants'][i]['parameters']
-        variables = vars_values.keys()
-        for var in variables:
-            if var in choosen_values.keys():
-                # Obtain function_name
-                f_name = vars_values[var][choosen_values[var]]
-                # Recurrent call
-                choosen_values[agg_param] = authomatic_questioner(f_name, db)
-
-    return choosen_values
-
-'''

@@ -1,63 +1,82 @@
 
 """
+Continious variable statistics
+------------------------------
 Module which groups all the functions needed to compute the statistics and the
 description of the categorical variables.
 
 """
 
-from ..Plotting import general_plot
 import numpy as np
 import pandas as pd
 
 
 ## Creation of the table info
-def compute_cont_describe(df, info_var):
-    """Function created to aggregate all the exploratory information of
-    variable studied.
+def quantile_compute(x, n_bins):
+    """Quantile computation.
+
+    Parameters
+    ----------
+    x: pd.DataFrame
+        the data variable we want to obtain its distribution.
+    n_bins: int
+        the number of bins we want to use to plot the distribution.
+
+    Returns
+    -------
+    quantiles: np.ndarray
+        the quantiles.
+
     """
-
-    ## 0. Needed variables
-    if info_var['variables'] == list:
-        variable = info_var['variables'][0]
-    else:
-        variable = info_var['variables']
-
-    ## 1. Summary
-    summary = info_var
-    summary['n_bins'] = 10 if not 'n_bins' in info_var else info_var['n_bins']
-    summary['mean'] = df[variable].mean()
-    summary['quantiles'] = quantile_compute(df[variable],
-                                            summary['n_bins'])
-    summary['ranges'] = ranges_compute(df[variable],
-                                       summary['n_bins'])
-    summary['hist_table'] = cont_count(df, variable,
-                                       summary['n_bins'])
-    if info_var['logscale'] in [True, 'True', 'TRUE']:
-        summary['log_hist_table'] = log_cont_count(df, variable,
-                                                   summary['n_bins'])
-
-    if info_var['ifplot'] in [True, 'True', 'TRUE']:
-        summary['plots'] = general_plot(df, info_var)
-
-    return summary
-
-
-def quantile_compute(df, n_bins):
     # aux.quantile(np.linspace(0, 1, 11)) # version = 0.15
-    quantiles = [df.quantile(q) for q in np.linspace(0, 1, n_bins+1)]
+    quantiles = [x.quantile(q) for q in np.linspace(0, 1, n_bins+1)]
     quantiles = np.array(quantiles)
     return quantiles
 
 
-def ranges_compute(df, n_bins):
-    mini = np.nanmin(np.array(df))
-    maxi = np.nanmax(np.array(df))
+def ranges_compute(x, n_bins):
+    """Computation of the ranges (borders of the bins).
+
+    Parameters
+    ----------
+    x: pd.DataFrame
+        the data variable we want to obtain its distribution.
+    n_bins: int
+        the number of bins we want to use to plot the distribution.
+
+    Returns
+    -------
+    ranges: np.ndarray
+        the borders of the bins.
+
+    """
+    mini = np.nanmin(np.array(x))
+    maxi = np.nanmax(np.array(x))
     ranges = np.linspace(mini, maxi, n_bins+1)
     return ranges
 
 
 ## Continious hist
 def cont_count(df, variable, n_bins):
+    """Count of continious variable.
+
+    Parameters
+    ----------
+    df: pd.DataFrame
+        the data in dataframe form.
+    variable: str
+        the variable of the database we want to study.
+    n_bins: int
+        the number of bins we want to use to plot the distribution.
+
+    Returns
+    -------
+    counts: pd.DataFrame
+        the counts of the bins.
+    bins: np.ndarray
+        the bins information.
+
+    """
     mini = np.nanmin(np.array(df[variable]))
     maxi = np.nanmax(np.array(df[variable]))
     bins = np.linspace(mini, maxi, n_bins+1)
@@ -69,6 +88,25 @@ def cont_count(df, variable, n_bins):
 
 
 def log_cont_count(df, variable, n_bins):
+    """Logarithmic count of countinious variable.
+
+    Parameters
+    ----------
+    df: pd.DataFrame
+        the data in dataframe form.
+    variable: str
+        the variable of the database we want to study.
+    n_bins: int
+        the number of bins we want to use to plot the distribution.
+
+    Returns
+    -------
+    counts: pd.DataFrame
+        the counts of the bins.
+    bins: np.ndarray
+        the bins information.
+
+    """
     mini = np.nanmin(np.array(df[variable]))
     mini = .001 if mini <= 0 else mini
     maxi = np.nanmax(np.array(df[variable]))

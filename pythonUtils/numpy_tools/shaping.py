@@ -9,7 +9,21 @@ import numpy as np
 
 
 def shaping_dim(array, ndim):
-    "The dimensions of the array have to be least than ndim."
+    """The dimensions of the array have to be least than ndim.
+
+    Parameters
+    ----------
+    array: np.ndarray
+        the array we want to format with the shape dimensions required.
+    ndim: int
+        the shape dimensions we want to format the input.
+
+    Returns
+    -------
+    array: np.ndarray
+        the array formatted in the shape dimensions required in the input.
+
+    """
 
     if array.ndim >= ndim:
         return array
@@ -20,7 +34,23 @@ def shaping_dim(array, ndim):
 
 
 def ensure_2dim(array, axis=0, sh_known=(None, None)):
-    "TODO: move to python utils"
+    """Ensure that the array input has two dimensions.
+
+    Parameters
+    ----------
+    array: np.ndarray
+        the array we want to ensure it has 2 dimensions.
+    axis: int (default=0)
+        the preferent axis.
+    sh_known: tuple (default=(None, None))
+        the known shape of the input.
+
+    Returns
+    -------
+    array: np.ndarray
+        the array formatted for 2 dimensions.
+
+    """
     ## Ensure 2 dimensions in the array
     sh = array.shape
     if len(sh) == 1:
@@ -32,9 +62,11 @@ def ensure_2dim(array, axis=0, sh_known=(None, None)):
     if len(notnone_ids) == 0:
         pass
     if len(notnone_ids) == 1:
-        if new_sh[notnone_ids] == sh_known[notnone_ids]:
+        new_sh_notnone = [new_sh[i] for i in notnone_ids]
+        sh_known_notnone = [sh_known[i] for i in notnone_ids]
+        if new_sh_notnone == sh_known_notnone:
             pass
-        elif new_sh[::-1][notnone_ids] == sh_known[notnone_ids]:
+        elif new_sh_notnone[::-1] == sh_known_notnone:
             new_sh = new_sh[::-1]
         else:
             raise Exception("Impossible to fit the conditions.")
@@ -43,6 +75,8 @@ def ensure_2dim(array, axis=0, sh_known=(None, None)):
             pass
         elif new_sh[::-1] == sh_known:
             new_sh = new_sh[::-1]
+        elif np.prod(new_sh) == np.prod(sh_known):
+            new_sh = sh_known
         else:
             raise Exception("Impossible to fit the conditions.")
     ## Transform array

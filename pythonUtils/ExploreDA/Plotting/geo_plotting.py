@@ -1,29 +1,37 @@
 
 """
+Geo_plotting
+------------
 Module which groups the geographical map plots.
-"""
 
+"""
 
 from mpl_toolkits.basemap import Basemap, cm
 import matplotlib.pyplot as plt
 import scipy.ndimage as ndimage
 import numpy as np
-
 #from Mscthesis.Statistics.stats_functions import compute_spatial_density
-
-
-def clean_coordinates(coordinates):
-    # Delete nan
-    coordinates = coordinates.dropna()
-    coordinates = np.array(coordinates)
-    # Delete 0,0
-    idx = np.logical_and(coordinates[:, 0] != 0, coordinates[:, 1] != 0)
-    coordinates = coordinates[idx, :]
-    return coordinates
 
 
 def plot_in_map(coordinates, resolution='f', color_cont=None, marker_size=1):
     """Plot the coordinates in points in the map.
+
+    Parameters
+    ----------
+    coordinates: pd.DataFrame
+        the coordinates points.
+    resolution: str optional ['f', ] (default='f')
+        the resolution to plot the geographical map.
+    color_cont:  (default=None)
+        the color of the continents.
+    marker_size: int or float
+        the size of the marker
+
+    Returns
+    -------
+    fig: matplotlib.pyplot.figure
+        the figure of the points in the map.
+
     """
 
     # Delete nan
@@ -61,6 +69,25 @@ def plot_in_map(coordinates, resolution='f', color_cont=None, marker_size=1):
 
 def plot_geo_heatmap(coordinates, n_levs, n_x, n_y, var=None):
     """Plot the coordinates in points in the map.
+
+    Parameters
+    ----------
+    coordinates: pd.DataFrame
+        the coordinates points.
+    n_levs: int
+        the number of level colors for the heat representation.
+    n_x: int
+        the size of the axis x in 'pixels'.
+    n_y: int
+        the size of the axis y in 'pixels'.
+    var: np.ndarray (default=None)
+        the weights of each point.
+
+    Returns
+    -------
+    fig: matplotlib.pyplot.figure
+        the figure of the heat in the map.
+
     """
 
     ## 00. Preprocess of the data
@@ -120,12 +147,38 @@ def plot_geo_heatmap(coordinates, n_levs, n_x, n_y, var=None):
 
 
 ###############################################################################
-###############################################################################
+########################## Computing spatial density ##########################
 ###############################################################################
 def compute_spatial_density(longs, lats, n_x, n_y, var=None, sigma_smooth=5,
                             order_smooth=0):
-    """Computation of the spatial density given the latitutes and logitudes of
+    """Computation of the spatial density given the latitutes and longitudes of
     the points we want to count.
+
+    Parameters
+    ----------
+    longs: np.ndarray
+        the longitudes variable.
+    lats: np.ndarray
+        the latitutes variable.
+    n_x: int
+        the size of the axis x in 'pixels'.
+    n_y: int
+        the size of the axis y in 'pixels'.
+    var: np.ndarray (default=None)
+        the weight values of each coordinates.
+    sigma_smooth: float
+        the size of the gaussian sigma smoothing.
+    order_smooth: int
+        the spatial size of the smoothing in 'pixels'.
+
+    Returns
+    -------
+    density: np.ndarray
+        the density of each square grid region.
+    l_x: np.ndarray
+        the borders of each grid regions in x dimension.
+    l_y: np.ndarray
+        the borders of each grid regions in y dimension.
 
     TODO
     ----
@@ -155,37 +208,69 @@ def compute_spatial_density(longs, lats, n_x, n_y, var=None, sigma_smooth=5,
     return density, l_x, l_y
 
 
-def compute_spatial_density_sparse(longs, lats, n_x, n_y, null_lim=0.1,
-                                   var=None):
-    """Computation of the spatial density given the latitutes and logitudes of
+def compute_spatial_density_sparse(longs, lats, n_x, n_y, sigma_smooth=5,
+                                   order_smooth=0, null_lim=0.1, var=None):
+    """Computation of the spatial density given the latitutes and longitudes of
     the points we want to count.
+
+    Parameters
+    ----------
+    longs: np.ndarray
+        the longitudes variable.
+    lats: np.ndarray
+        the latitutes variable.
+    n_x: int
+        the size of the axis x in 'pixels'.
+    n_y: int
+        the size of the axis y in 'pixels'.
+    sigma_smooth: float
+        the size of the gaussian sigma smoothing.
+    order_smooth: int
+        the spatial size of the smoothing in 'pixels'.
+    null_lim: float (default=0.1)
+        the lower limit to consider null density.
+    var: np.ndarray (default=None)
+        the weight values of each coordinates.
+
+    Returns
+    -------
+    density: np.ndarray
+        the density of each square grid region.
+    l_x: np.ndarray
+        the borders of each grid regions in x dimension.
+    l_y: np.ndarray
+        the borders of each grid regions in y dimension.
 
     TODO
     ----
     Smoothing function
 
     """
-    ## 0. Setting initial variables
-    llcrnrlon = np.floor(np.min(longs))
-    llcrnrlat = np.floor(np.min(lats))
-    urcrnrlon = np.ceil(np.max(longs))
-    urcrnrlat = np.ceil(np.max(lats))
-    l_x = np.linspace(llcrnrlon, urcrnrlon, n_x+1)
-    l_y = np.linspace(llcrnrlat, urcrnrlat, n_y+1)
+#    ## 0. Setting initial variables
+#    llcrnrlon = np.floor(np.min(longs))
+#    llcrnrlat = np.floor(np.min(lats))
+#    urcrnrlon = np.ceil(np.max(longs))
+#    urcrnrlat = np.ceil(np.max(lats))
+#    l_x = np.linspace(llcrnrlon, urcrnrlon, n_x+1)
+#    l_y = np.linspace(llcrnrlat, urcrnrlat, n_y+1)
+#
+#    ## 1. Computing density
+#    density = computing_density_var(longs, lats, [l_x, l_y], var)
+#    #density = density.T
+#
+#    ## 2. Smothing density
+#
+#    ## 3. Output
+#    l_x = np.mean(np.vstack([l_x[:-1], l_x[1:]]), axis=0)
+#    l_y = np.mean(np.vstack([l_y[:-1], l_y[1:]]), axis=0)
 
-    ## 1. Computing density
-    density = computing_density_var(longs, lats, [l_x, l_y], var)
-    #density = density.T
-
-    ## 2. Smothing density
-
-    ## 3. Output
-    l_x = np.mean(np.vstack([l_x[:-1], l_x[1:]]), axis=0)
-    l_y = np.mean(np.vstack([l_y[:-1], l_y[1:]]), axis=0)
-
+    ## 0. Computing spatial density
+    density, l_x, l_y = compute_spatial_density(longs, lats, n_x, n_y, var,
+                                                sigma_smooth, order_smooth)
+    l_x, l_y = l_x[0, :], l_y[:, 0]
+    ## 1. Sparsing formatting
     idxs = (density > null_lim).nonzero()
     density = density[idxs]
-
     l_x = l_x[idxs[0]]
     l_y = l_y[idxs[1]]
 
@@ -193,7 +278,25 @@ def compute_spatial_density_sparse(longs, lats, n_x, n_y, null_lim=0.1,
 
 
 def computing_density_var(longs, lats, border_grid, var=None):
-    """"""
+    """Computing density of a variable.
+
+    Parameters
+    ----------
+    longs: np.ndarray
+        the longitudes variable.
+    lats: np.ndarray
+        the latitutes variable.
+    border_grid: list of np.ndarray
+        the borders of each square in the grid.
+    var: np.ndarray (default=None)
+        the weight values of each coordinates.
+
+    Returns
+    -------
+    density: np.ndarray
+        the density of each square grid region.
+
+    """
     if var is None:
         density, _, _ = np.histogram2d(longs, lats, border_grid)
     else:
@@ -212,3 +315,29 @@ def computing_density_var(longs, lats, border_grid, var=None):
                 idxs = np.logical_and(idxs_i, idxs_j)
                 density[i, j] = np.sum(var[idxs])
     return density
+
+
+###############################################################################
+############################# Auxiliar functions ##############################
+###############################################################################
+def clean_coordinates(coordinates):
+    """Clean possible incorrect coordinates.
+
+    Parameters
+    ----------
+    coordinates: pd.DataFrame
+        the coordinates points.
+
+    Returns
+    -------
+    coordinates: np.ndarray
+        the coordinates points.
+
+    """
+    # Delete nan
+    coordinates = coordinates.dropna()
+    coordinates = np.array(coordinates)
+    # Delete 0,0
+    idx = np.logical_and(coordinates[:, 0] != 0, coordinates[:, 1] != 0)
+    coordinates = coordinates[idx, :]
+    return coordinates

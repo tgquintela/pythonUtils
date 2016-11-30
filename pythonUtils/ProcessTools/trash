@@ -1,0 +1,122 @@
+
+#    def setting_loop(self, N_t):
+#        """Setting loop for the use of the processer class.
+#
+#        Parameters
+#        ----------
+#        N_t: int
+#            the total number of loop iterations.
+#
+#        Returns
+#        -------
+#        t0: float
+#            the time at the moment of initialization of the loop bunch.
+#        bun: int
+#            the index of the bunch.
+#
+#        """
+#        self.logfile.write_log(message_init_loop % str(N_t))
+#        t0, bun = time.time(), 0
+#        return t0, bun
+
+#    def messaging_loop(self, i, t0, bun):
+#        """Message into the loop.
+#
+#        Parameters
+#        ----------
+#        i: int
+#            the index of the loop.
+#        t0: float
+#            the time at the moment of initialization of the loop bunch.
+#        bun: int
+#            the index of the bunch.
+#
+#        Returns
+#        -------
+#        t0: float
+#            the time at the moment of initialization of the loop bunch.
+#        bun: int
+#            the index of the bunch.
+#
+#        """
+#        if self.bool_inform and (i % self.lim_rows) == 0 and i != 0:
+#            t_sp = time.time()-t0
+#            bun += 1
+#            self.logfile.write_log(message_loop % (bun, self.lim_rows, t_sp))
+#            t0 = time.time()
+#        return t0, bun
+
+#    def setting_global_process(self):
+#        """Setting up the process.
+#
+#        Returns
+#        -------
+#        t00: float
+#            the time at the moment of initialization of the process.
+#
+#        """
+#        ## Initiating process
+#        message0 = initial_message_creation(self.proc_name, self.proc_desc)
+#        self.logfile.write_log(message0)
+#        t00 = time.time()
+#        return t00
+
+#    def close_process(self, t00):
+#        """Closing process.
+#
+#        Parameters
+#        ----------
+#        t00: float
+#            the time at the moment of initialization of the process.
+#
+#        """
+#        ## Closing process
+#        t_expended = time.time()-t00
+#        self.logfile.write_log(message_close0)
+#        self.logfile.write_log(message_last % t_expended)
+#        self.logfile.write_log(message_close)
+#        self.time_expended = t_expended
+
+#    def close_subprocess(self, index_sub, t0):
+#        """Close subprocesses at different levels up to level 6.
+#
+#        Parameters
+#        ----------
+#        index_sub: list
+#            the indices of the subprocess.
+#        t0: float
+#            the time at the moment of initialization of the subprocess.
+#
+#        """
+#        ## Save time
+#        t_expended = time.time()-t0
+#        if len(index_sub) == 1:
+#            i0 = index_sub[0]
+#            self.t_expended_subproc[i0] = t_expended
+#            proc_name = self.subproc_desc[i0]
+#        elif len(index_sub) == 2:
+#            i0, i1 = index_sub[0], index_sub[1]
+#            self.t_expended_subproc[i0][i1] = t_expended
+#            proc_name = self.subproc_desc[i0][i1]
+#        elif len(index_sub) == 3:
+#            i0, i1, i2 = index_sub[0], index_sub[1], index_sub[2]
+#            self.t_expended_subproc[i0][i1][i2] = t_expended
+#            proc_name = self.subproc_desc[i0][i1][i2]
+#        elif len(index_sub) == 4:
+#            i0, i1, i2 = index_sub[0], index_sub[1], index_sub[2]
+#            i3 = index_sub[3]
+#            self.t_expended_subproc[i0][i1][i2][i3] = t_expended
+#            proc_name = self.subproc_desc[i0][i1][i2][i3]
+#        elif len(index_sub) == 5:
+#            i0, i1, i2 = index_sub[0], index_sub[1], index_sub[2]
+#            i3, i4 = index_sub[3], index_sub[4]
+#            self.t_expended_subproc[i0][i1][i2][i3][i4] = t_expended
+#            proc_name = self.subproc_desc[i0][i1][i2][i3][i4]
+#        elif len(index_sub) == 6:
+#            i0, i1, i2 = index_sub[0], index_sub[1], index_sub[2]
+#            i3, i4, i5 = index_sub[3], index_sub[4], index_sub[5]
+#            self.t_expended_subproc[i0][i1][i2][i3][i4][i5] = t_expended
+#            proc_name = self.subproc_desc[i0][i1][i2][i3][i4][i5]
+#        ## Logfile writing
+#        self.logfile.write_log(message1 % proc_name)
+#        self.logfile.write_log(message2 % t_expended)

@@ -1,32 +1,26 @@
-#!/usr/bin/env/python
-
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 """
-Installation script
+Setup script for the installation of pythonUtils.
+It is possible to install this package with
+
+python setup.py install
 """
 
-
+from glob import glob
 import sys
 import os
 import warnings
+from pythonUtils import release
+
+## Temporally commented
+#if os.path.exists('MANIFEST'):
+#    os.remove('MANIFEST')
+
 
 ## Definition of useful functions
 def read(fname):
     return open(os.path.join(os.path.dirname(__file__), fname)).read()
-
-
-def write_version_py(filename=None):
-    cnt = """\
-version = '%s'
-"""
-    if not filename:
-        filename = os.path.join(
-            os.path.dirname(__file__), 'pythonUtils', 'version.py')
-
-    a = open(filename, 'w')
-    try:
-        a.write(cnt % (VERSION))
-    finally:
-        a.close()
 
 
 ## Check problems with the setuptools
@@ -35,33 +29,60 @@ try:
 except ImportError:
     from distutils.core import setup
 
-## Quantify the version
-MAJOR = 0
-MINOR = 0
-MICRO = 0
-ISRELEASED = False
-VERSION = '%d.%d.%d' % (MAJOR, MINOR, MICRO)
-QUALIFIER = ''
+if sys.argv[-1] == 'setup.py':
+    print("To install, run 'python setup.py install'")
+    print()
 
-write_version_py()
+
+version = release.write_versionfile()
+
+packages = ['pythonUtils',
+            'pythonUtils.CodingText', 'pythonUtils.CollectionMeasures',
+            'pythonUtils.Combinatorics',
+            'pythonUtils.ExploreDA',
+            'pythonUtils.ExploreDA.Statistics',
+            'pythonUtils.ExploreDA.Plotting',
+            'pythonUtils.ExploreDA.SummaryStatistics',
+            'pythonUtils.Logger',
+            'pythonUtils.ProcessTools', 'pythonUtils.TUI_tools',
+            'pythonUtils.TesterResults', 'pythonUtils.numpy_tools',
+            'pythonUtils.parallel_tools', 'pythonUtils.perturbation_tests',
+            'pythonUtils.sklearn_tools'
+            ]
+
+docdirbase = 'share/doc/pythonUtils-%s' % version
+# add basic documentation
+data = [(docdirbase, glob("*.txt"))]
+# add examples
+for d in ['advanced',
+          'algorithms']:
+    dd = os.path.join(docdirbase, 'examples', d)
+    pp = os.path.join('examples', d)
+    data.append((dd, glob(os.path.join(pp, "*.py"))))
+    data.append((dd, glob(os.path.join(pp, "*.bz2"))))
+    data.append((dd, glob(os.path.join(pp, "*.gz"))))
+    data.append((dd, glob(os.path.join(pp, "*.mbox"))))
+    data.append((dd, glob(os.path.join(pp, "*.edgelist"))))
+
+# add the tests
+#package_data = {'pythonUtils': ['tests/*.py']}
+package_data = {}
+
+install_requires = ['numpy', 'scipy', 'pandas', 'matplotlib']
 
 ## Setup
-setup(name='pythonUtils',
-      version=VERSION,
-      description='Utils for python coding',
-      license='BSD',
-      author='T. Gonzalez Quintela',
-      author_email='tgq.spm@gmail.com',
-      url='',
+setup(name=release.name,
+      version=version,
+      description=release.description,
+      license=release.license,
+      platforms=release.platforms,
+      maintainer=release.maintainer,
+      maintainer_email=release.maintainer_email,
+      author=release.author,
+      author_email=release.author_email,
+      url=release.url,
+      classifiers=release.classifiers,
       long_description=read('README.md'),
-      packages=['pythonUtils', 'pythonUtils.ExploreDA',
-		'pythonUtils.ExploreDA.Statistics',
-		'pythonUtils.ExploreDA.Plotting', 'pythonUtils.Logger',
-		'pythonUtils.ProcessTools', 'pythonUtils.TUI_tools',
-		'pythonUtils.numpy_tools', 'pythonUtils.TesterResults',
-		'pythonUtils.parallel_tools', 'pythonUtils.CodingText'],
-      install_requires=['numpy', 'scipy'], #'matplotlib', 'pandas',
-			#'datetime', #'python-mpltoolkits.basemap'
-			#'python-dateutil'],
-)
-
+      packages=packages,
+      install_requires=install_requires,
+      )

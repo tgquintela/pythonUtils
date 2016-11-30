@@ -1,5 +1,7 @@
 
 """
+Categorical distribution plot
+-----------------------------
 Distribution of categorical variables can be plotted and inspected with the
 functions of this module.
 """
@@ -10,6 +12,19 @@ import numpy as np
 
 def barplot_plot(x, logscale=False):
     """Function to explore distribution of a categorical variable.
+
+    Parameters
+    ----------
+    x: pd.DataFrame, shape (n,)
+        the data we want to explore.
+    logscale: boolean (default=False)
+        if we want to use the logarithmic scale.
+
+    Returns
+    -------
+    fig: matplotlib.pyplot.figure
+        the figure of the barplot required of the variable data defined in `x`.
+
     """
 
     ## 0. Setting needed variables

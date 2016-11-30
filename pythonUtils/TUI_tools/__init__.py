@@ -10,5 +10,3 @@ TODO
 * Print defaults in questions
 
 """
-
-

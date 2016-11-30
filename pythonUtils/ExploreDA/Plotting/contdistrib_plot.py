@@ -1,7 +1,10 @@
 
 """
+Continious distribution plot
+----------------------------
 Distribution of continious variables can be plotted and inspected with the
 functions of this module.
+
 """
 
 import matplotlib.pyplot as plt
@@ -10,6 +13,21 @@ import numpy as np
 
 def cont_distrib_plot(x, n_bins, logscale=False):
     """Function to explore the distribution of a continiuos variable.
+
+    Parameters
+    ----------
+    x: pd.DataFrame
+        the data variable we want to obtain its distribution.
+    n_bins: int
+        the number of bins we want to use to plot the distribution.
+    logscale: boolean (default=False)
+        if we want to use logscale for both variables.
+
+    Returns
+    -------
+    fig: matplotlib.pyplot.figure
+        the figure of the distribution required of the variable data defined in
+        `x`.
 
     TODO
     ----

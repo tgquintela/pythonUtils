@@ -11,7 +11,7 @@ import numpy as np
 
 def discretize_with_thresholds(array, thres, values=[]):
     """This function discretize the array to the values given.
-    
+
     Parameters
     ----------
     array : array_like, shape (N,)
@@ -37,7 +37,7 @@ def discretize_with_thresholds(array, thres, values=[]):
         assert len(thres) == len(values)-1
     mini = np.array([0])*(array.max()-array.min()) + array.min()
     maxi = np.array([1])*array.max()
-    thres = np.hstack([mini, thres, maxi ])
+    thres = np.hstack([mini, thres, maxi])
 
     ## 2. Fill the new vector discretized signal to the given values
     aux = np.zeros(array.shape)
@@ -47,4 +47,3 @@ def discretize_with_thresholds(array, thres, values=[]):
         aux[indices] = values[i]
 
     return aux
-

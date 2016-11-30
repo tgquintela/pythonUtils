@@ -19,6 +19,11 @@ def wheeler_assignation(prop, r):
     r: float [0, 1)
         a random number between 0 and 1.
 
+    Returns
+    -------
+    i: int
+        the interval selected by the wheeler assignation process.
+
     """
 
     prop2 = np.cumsum(prop)
@@ -26,4 +31,3 @@ def wheeler_assignation(prop, r):
         if prop2[i] >= r:
             break
     return i
-
