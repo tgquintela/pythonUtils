@@ -1,5 +1,6 @@
 #!/bin/bash
-# Install
+# Installing
+sudo pip install -r requirements.txt
 sudo python setup.py install
 # Deleting trash files
 sudo rm -r build/
