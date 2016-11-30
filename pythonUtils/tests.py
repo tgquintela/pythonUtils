@@ -21,6 +21,10 @@ from Perturbations import test_perturbations
 from perturbation_tests import test_perturbationtests
 from NeighsManager import test_neighsmanager
 
+## Check administrative
+import release
+import version
+
 ## Not inform about warnings
 import warnings
 with warnings.catch_warnings():

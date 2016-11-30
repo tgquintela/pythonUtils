@@ -11,5 +11,5 @@ set -e
 if [[ "$COVERAGE" == "true" ]]; then
     nosetests pythonUtils/tests.py --with-coverage --cover-package=pythonUtils
 else
-    nosetests
+    nosetests pythonUtils/tests.py
 fi
