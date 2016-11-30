@@ -7,4 +7,3 @@ networkx>=1.8
 nose
 shapely>=1.5.13
 libgfortran
-itertools
