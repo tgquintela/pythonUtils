@@ -9,9 +9,7 @@
 set -e
 
 if [[ "$COVERAGE" == "true" ]]; then
-    #nosetests pythonUtils/tests.py --with-coverage --cover-package=pythonUtils
-    :
+    nosetests pythonUtils/tests.py --with-coverage --cover-package=pythonUtils
 else
-    #nosetests pythonUtils/tests.py
-    :
+    nosetests pythonUtils/tests.py
 fi
