@@ -45,9 +45,8 @@ packages = ['pythonUtils',
             'pythonUtils.ExploreDA.SummaryStatistics',
             'pythonUtils.Logger',
             'pythonUtils.ProcessTools', 'pythonUtils.TUI_tools',
-            'pythonUtils.TesterResults', 'pythonUtils.numpy_tools',
-            'pythonUtils.parallel_tools', 'pythonUtils.perturbation_tests',
-            'pythonUtils.sklearn_tools'
+            'pythonUtils.numpy_tools', 'pythonUtils.parallel_tools',
+            'pythonUtils.perturbation_tests', 'pythonUtils.sklearn_tools'
             ]
 
 docdirbase = 'share/doc/pythonUtils-%s' % version
