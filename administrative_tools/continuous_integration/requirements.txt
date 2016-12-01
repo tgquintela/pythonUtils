@@ -5,5 +5,5 @@ matplotlib>=1.4
 pandas>=0.16
 networkx>=1.8
 nose
-shapely>=1.5.13
 libgfortran
+basemap

@@ -77,7 +77,7 @@ elif [[ "$DISTRIB" == "ubuntu" ]]; then
     # Create a new virtualenv using system site packages for numpy and scipy
     virtualenv --system-site-packages testenv
     source testenv/bin/activate
-    pip install -r administrative_tools/continuous_integration/requirements.txt
+    pip install -r administrative_tools/continuous_integration/requirements.txt+
     #pip install nose
     #pip install coverage
     #pip install numpy==$NUMPY_VERSION
