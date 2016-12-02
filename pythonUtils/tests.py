@@ -37,7 +37,7 @@ def test():
 #    test_parallel_tools.test()
 #    test_logger.test()
 #    test_tui_tools.test()
-#    test_codingtext.test()
+    test_codingtext.test()
 #    test_numpytools.test()
 #    test_processtools.test()
 #    test_exploreDA.test()
