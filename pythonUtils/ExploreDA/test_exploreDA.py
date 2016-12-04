@@ -49,9 +49,9 @@ def test():
     ranges_compute(contdata, 5)
     cont_count(df, 'a', 5)
     log_cont_count(df, 'a', 5)
-#
-#    # Coordinate variables
-#    mean_coord_by_values(df, ['a', 'b'], 'c')
+
+    # Coordinate variables
+    mean_coord_by_values(df, ['a', 'b'], 'c')
 
 #    # Temporal variable
 #    date_ranges = np.linspace(timedata.min(), timedata.max(), 5)[1:-1]
