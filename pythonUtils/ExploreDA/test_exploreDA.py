@@ -27,37 +27,36 @@ from SummaryStatistics.univariate_stats import compute_univariate_stats
 
 
 def test():
-    pass
-#    ## Parameters data
-#    contdata = pd.Series(np.random.random(100))
-#    catdata = pd.Series(np.random.randint(0, 10, 100))
-#    netdata = np.random.random((10, 10))
-#    xt = np.random.random(100)
-#    timedata = pd.Series(np.random.random(100),
-#                         index=[datetime.datetime.now() + datetime.timedelta(e)
-#                                for e in np.cumsum(xt)])
-#
-#    df = pd.DataFrame([np.random.random(100), np.random.random(100), catdata])
-#    df = df.T
-#    df.columns = ['a', 'b', 'c']
-#
-#    ### Statitics testing
-#    # Categorical variable
-#    cat_count(df, 'c')
-#
-#    # Continious variable
-#    quantile_compute(contdata, 5)
-#    ranges_compute(contdata, 5)
-#    cont_count(df, 'a', 5)
-#    log_cont_count(df, 'a', 5)
-#
-#    # Coordinate variables
-#    mean_coord_by_values(df, ['a', 'b'], 'c')
-#
-#    # Temporal variable
-#    date_ranges = np.linspace(timedata.min(), timedata.max(), 5)[1:-1]
-#    count_temp_stats(timedata, date_ranges, tags=None)
-#
+    ## Parameters data
+    contdata = pd.Series(np.random.random(100))
+    catdata = pd.Series(np.random.randint(0, 10, 100))
+    netdata = np.random.random((10, 10))
+    xt = np.random.random(100)
+    timedata = pd.Series(np.random.random(100),
+                         index=[datetime.datetime.now() + datetime.timedelta(e)
+                                for e in np.cumsum(xt)])
+
+    df = pd.DataFrame([np.random.random(100), np.random.random(100), catdata])
+    df = df.T
+    df.columns = ['a', 'b', 'c']
+
+    ### Statitics testing
+    # Categorical variable
+    cat_count(df, 'c')
+
+    # Continious variable
+    quantile_compute(contdata, 5)
+    ranges_compute(contdata, 5)
+    cont_count(df, 'a', 5)
+    log_cont_count(df, 'a', 5)
+
+    # Coordinate variables
+    mean_coord_by_values(df, ['a', 'b'], 'c')
+
+    # Temporal variable
+    date_ranges = np.linspace(timedata.min(), timedata.max(), 5)[1:-1]
+    count_temp_stats(timedata, date_ranges, tags=None)
+
 #    ### Plotting testing
 #    ## Testing univariate categorical variable plotting
 #    barplot_plot(catdata, logscale=False)
