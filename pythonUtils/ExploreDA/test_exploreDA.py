@@ -47,7 +47,7 @@ def test():
     # Continious variable
     quantile_compute(contdata, 5)
     ranges_compute(contdata, 5)
-#    cont_count(df, 'a', 5)
+    cont_count(df, 'a', 5)
 #    log_cont_count(df, 'a', 5)
 #
 #    # Coordinate variables
