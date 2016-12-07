@@ -57,11 +57,11 @@ def test():
     date_ranges = np.linspace(timedata.min(), timedata.max(), 5)[1:-1]
     count_temp_stats(timedata, date_ranges, tags=None)
 
-#    ### Plotting testing
-#    ## Testing univariate categorical variable plotting
-#    barplot_plot(catdata, logscale=False)
-#    barplot_plot(catdata, logscale=True)
-#
+    ### Plotting testing
+    ## Testing univariate categorical variable plotting
+    barplot_plot(catdata, logscale=False)
+    barplot_plot(catdata, logscale=True)
+
 #    ## Testing univariate continious variable plotting
 #    cont_distrib_plot(contdata, n_bins=5, logscale=True)
 #    cont_distrib_plot(contdata, n_bins=5, logscale=False)
