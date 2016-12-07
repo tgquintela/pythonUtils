@@ -53,10 +53,10 @@ def test():
     # Coordinate variables (TORETEST :Fail)
     mean_coord_by_values(df, ['a', 'b'], 'c')
 
-#    # Temporal variable
-#    date_ranges = np.linspace(timedata.min(), timedata.max(), 5)[1:-1]
-#    count_temp_stats(timedata, date_ranges, tags=None)
-#
+    # Temporal variable
+    date_ranges = np.linspace(timedata.min(), timedata.max(), 5)[1:-1]
+    count_temp_stats(timedata, date_ranges, tags=None)
+
 #    ### Plotting testing
 #    ## Testing univariate categorical variable plotting
 #    barplot_plot(catdata, logscale=False)
