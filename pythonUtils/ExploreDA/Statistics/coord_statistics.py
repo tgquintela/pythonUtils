@@ -28,5 +28,5 @@ def mean_coord_by_values(df, coordinates_vars, var2agg):
 
     """
     #table = df.pivot_table(index=var2agg, values=coordinates_vars)
-    table = df[coordinates_vars].groupby(var2agg).mean()
+    table = df[coordinates_vars+[var2agg]].groupby(var2agg).mean()
     return table
