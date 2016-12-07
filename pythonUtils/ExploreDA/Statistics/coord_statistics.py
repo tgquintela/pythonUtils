@@ -27,5 +27,6 @@ def mean_coord_by_values(df, coordinates_vars, var2agg):
         the data of the mean average locations.
 
     """
-    table = df.pivot_table(rows=var2agg, values=coordinates_vars)
+    #table = df.pivot_table(index=var2agg, values=coordinates_vars)
+    table = df[coordinates_vars].groupby(var2agg).mean()
     return table
