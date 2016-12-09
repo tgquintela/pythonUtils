@@ -65,7 +65,8 @@ def test():
     import matplotlib.pyplot as plt
     import warnings
     try:
-        fig = plt.figure()
+        #fig = plt.figure()
+        pass
     except:
         pass
 #    except Exception as error:
