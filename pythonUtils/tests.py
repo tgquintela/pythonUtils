@@ -36,7 +36,7 @@ def test():
     ## Tests of modules
     test_parallel_tools.test()
     test_logger.test()
-#    test_tui_tools.test()
+    test_tui_tools.test()
 #    test_codingtext.test()
 ##    test_numpytools.test()
 #    test_processtools.test()
