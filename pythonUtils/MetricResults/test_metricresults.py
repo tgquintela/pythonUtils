@@ -59,11 +59,11 @@ def test():
     lift = compute_lift_curve(real_cont, pred_cont, 10)[1]
     lifts = [compute_lift_curve(real_cat, preds_cat[i], 10)[1]
              for i in range(m_preds)]
-#
-#    ## Testing plotting
-#    ###################
-#    fig = plot_roc_curves(fprs, tprs, measures, tags)
-#    fig = plot_roc_curve(fpr, tpr, measures[0])
+
+    ## Testing plotting
+    ###################
+    fig = plot_roc_curves(fprs, tprs, measures, tags)
+    fig = plot_roc_curve(fpr, tpr, measures[0])
 #    fig = plot_lift_curves(lifts, tags)
 #    fig = plot_lift_curve(lift)
 #
