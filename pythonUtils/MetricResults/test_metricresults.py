@@ -62,6 +62,8 @@ def test():
 
     ## Testing plotting
     ###################
+    import matplotlib.pyplot as plt
+    fig = plt.figure()
 #    fig = plot_roc_curves(fprs, tprs, measures, tags)
 #    fig = plot_roc_curve(fpr, tpr, measures[0])
 #    fig = plot_lift_curves(lifts, tags)
