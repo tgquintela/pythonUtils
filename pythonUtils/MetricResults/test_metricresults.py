@@ -64,8 +64,10 @@ def test():
     ###################
     import matplotlib.pyplot as plt
     import warnings
-#    try:
-#        fig = plt.figure()
+    try:
+        fig = plt.figure()
+    except:
+        pass
 #    except Exception as error:
 #        warnings.warn('Figure error: ' + repr(error) + str(error))
 #    fig = plot_roc_curves(fprs, tprs, measures, tags)
