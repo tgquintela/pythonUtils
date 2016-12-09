@@ -34,11 +34,11 @@ def plot_roc_curves(fprs, tprs, measures, tags):
     assert(len(measures) == len(tags))
 
     fig = plt.figure()
-#    lines = []
-#    for i in range(len(fprs)):
-#        p = plt.plot(fprs[i], tprs[i],
-#                     label=tags[i] + '; AUC = %0.2f' % measures[i])
-#        lines.append(p[0])
+    lines = []
+    for i in range(len(fprs)):
+        p = plt.plot(fprs[i], tprs[i],
+                     label=tags[i] + '; AUC = %0.2f' % measures[i])
+        lines.append(p[0])
 #
 #    plt.ylabel('True Positive Rate')
 #    plt.xlabel('False Positive Rate')
