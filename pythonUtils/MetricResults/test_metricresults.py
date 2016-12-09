@@ -47,18 +47,18 @@ def test():
     G_y = nx.from_numpy_matrix(x.reshape((10, 10)) > 0.5)
     Gs_x = [G_x for i in range(10)]
 
-#    ## Testing sorting measures
-#    ###########################
-#    fpr, tpr, _ = roc_comparison(real_cat, pred_cat)
-#    rocs = [roc_comparison(real_cat, preds_cat[i])
-#            for i in range(m_preds)]
-#    fprs = [rocs[i][0] for i in range(m_preds)]
-#    tprs = [rocs[i][1] for i in range(m_preds)]
-#    measures = np.random.random(len(rocs))
-#    compute_lift_curve(real_cat, pred_cat, 10)
-#    lift = compute_lift_curve(real_cont, pred_cont, 10)[1]
-#    lifts = [compute_lift_curve(real_cat, preds_cat[i], 10)[1]
-#             for i in range(m_preds)]
+    ## Testing sorting measures
+    ###########################
+    fpr, tpr, _ = roc_comparison(real_cat, pred_cat)
+    rocs = [roc_comparison(real_cat, preds_cat[i])
+            for i in range(m_preds)]
+    fprs = [rocs[i][0] for i in range(m_preds)]
+    tprs = [rocs[i][1] for i in range(m_preds)]
+    measures = np.random.random(len(rocs))
+    compute_lift_curve(real_cat, pred_cat, 10)
+    lift = compute_lift_curve(real_cont, pred_cont, 10)[1]
+    lifts = [compute_lift_curve(real_cat, preds_cat[i], 10)[1]
+             for i in range(m_preds)]
 #
 #    ## Testing plotting
 #    ###################
