@@ -26,10 +26,10 @@ import release
 import version
 
 ## Not inform about warnings
-import warnings
-with warnings.catch_warnings():
-    warnings.simplefilter("ignore")
-warnings.simplefilter("ignore")
+#import warnings
+#with warnings.catch_warnings():
+#    warnings.simplefilter("ignore")
+#warnings.simplefilter("ignore")
 
 
 def test():
