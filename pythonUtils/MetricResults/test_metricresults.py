@@ -65,11 +65,9 @@ def test():
     import matplotlib.pyplot as plt
     import warnings
     try:
-        #fig = plt.figure()
-        pass
+        fig = plt.figure()
     except Exception as error:
-        pass
-#        warnings.warn('Figure error: ' + repr(error) + str(error))
+        warnings.warn('Figure error: ' + repr(error) + str(error))
 #    fig = plot_roc_curves(fprs, tprs, measures, tags)
 #    fig = plot_roc_curve(fpr, tpr, measures[0])
 #    fig = plot_lift_curves(lifts, tags)
