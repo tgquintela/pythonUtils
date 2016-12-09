@@ -33,9 +33,10 @@ warnings.simplefilter("ignore")
 
 
 def test():
+    pass
     ## Tests of modules
-#    test_parallel_tools.test()
-    test_logger.test()
+##    test_parallel_tools.test()
+#    test_logger.test()
 #    test_tui_tools.test()
 #    test_codingtext.test()
 ##    test_numpytools.test()
