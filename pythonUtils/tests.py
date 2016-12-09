@@ -39,7 +39,7 @@ def test():
     test_tui_tools.test()
     test_codingtext.test()
     test_numpytools.test()
-#    test_processtools.test()
+    test_processtools.test()
 #    test_exploreDA.test()
 ##    test_metricresults.test()
 ##    test_collectionmeasures.test()
