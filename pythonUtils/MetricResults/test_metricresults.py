@@ -67,7 +67,7 @@ def test():
         fig = plt.figure()
     except Exception as error:
         import warnings
-        warnings.warn('Figure error: ' + repr(error))
+        warnings.warn('Figure error: ' + repr(error) + str(error))
 #    fig = plot_roc_curves(fprs, tprs, measures, tags)
 #    fig = plot_roc_curve(fpr, tpr, measures[0])
 #    fig = plot_lift_curves(lifts, tags)
