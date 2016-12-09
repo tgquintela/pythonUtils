@@ -47,47 +47,47 @@ def test():
     G_y = nx.from_numpy_matrix(x.reshape((10, 10)) > 0.5)
     Gs_x = [G_x for i in range(10)]
 
-    ## Testing sorting measures
-    ###########################
-    fpr, tpr, _ = roc_comparison(real_cat, pred_cat)
-    rocs = [roc_comparison(real_cat, preds_cat[i])
-            for i in range(m_preds)]
-    fprs = [rocs[i][0] for i in range(m_preds)]
-    tprs = [rocs[i][1] for i in range(m_preds)]
-    measures = np.random.random(len(rocs))
-    compute_lift_curve(real_cat, pred_cat, 10)
-    lift = compute_lift_curve(real_cont, pred_cont, 10)[1]
-    lifts = [compute_lift_curve(real_cat, preds_cat[i], 10)[1]
-             for i in range(m_preds)]
-
-    ## Testing plotting
-    ###################
-    fig = plot_roc_curves(fprs, tprs, measures, tags)
-    fig = plot_roc_curve(fpr, tpr, measures[0])
-    fig = plot_lift_curves(lifts, tags)
-    fig = plot_lift_curve(lift)
-
-    ## Testing main computing funcitons
-    ###################################
-    measures, fig = compute_measure(real_cat, pred_cat, metric="roc_curve",
-                                    create_plot=True, tags=['0'])
-    measures = compute_measure(real_cat, pred_cat, metric="roc_curve",
-                               create_plot=False, tags=['0'])
-    measures, fig = compute_measure(real_cat, preds_cat, metric="roc_curve",
-                                    create_plot=True, tags=tags)
-    measures = compute_measure(real_cat, preds_cat, metric="roc_curve",
-                               create_plot=False, tags=tags)
-    measures, fig = compute_measure(real_cat, pred_cat, metric="lift10",
-                                    create_plot=True, tags=['0'])
-    measures = compute_measure(real_cat, pred_cat, metric="lift10",
-                               create_plot=False, tags=['0'])
-    measures, fig = compute_measure(real_cat, preds_cat, metric="lift10",
-                                    create_plot=True, tags=tags)
-    measures = compute_measure(real_cat, preds_cat, metric="lift10",
-                               create_plot=True, tags=tags)
-
-    ########
-    names = ['network inferred '+str(i) for i in range(10)]
-    measure, fig = network_roc_comparison(G_x, G_y)
-    measure, fig = network_roc_comparison(G_x, G_y, names)
-    measure, fig = network_roc_comparison(Gs_x, G_y, ['network inferred 0'])
+#    ## Testing sorting measures
+#    ###########################
+#    fpr, tpr, _ = roc_comparison(real_cat, pred_cat)
+#    rocs = [roc_comparison(real_cat, preds_cat[i])
+#            for i in range(m_preds)]
+#    fprs = [rocs[i][0] for i in range(m_preds)]
+#    tprs = [rocs[i][1] for i in range(m_preds)]
+#    measures = np.random.random(len(rocs))
+#    compute_lift_curve(real_cat, pred_cat, 10)
+#    lift = compute_lift_curve(real_cont, pred_cont, 10)[1]
+#    lifts = [compute_lift_curve(real_cat, preds_cat[i], 10)[1]
+#             for i in range(m_preds)]
+#
+#    ## Testing plotting
+#    ###################
+#    fig = plot_roc_curves(fprs, tprs, measures, tags)
+#    fig = plot_roc_curve(fpr, tpr, measures[0])
+#    fig = plot_lift_curves(lifts, tags)
+#    fig = plot_lift_curve(lift)
+#
+#    ## Testing main computing funcitons
+#    ###################################
+#    measures, fig = compute_measure(real_cat, pred_cat, metric="roc_curve",
+#                                    create_plot=True, tags=['0'])
+#    measures = compute_measure(real_cat, pred_cat, metric="roc_curve",
+#                               create_plot=False, tags=['0'])
+#    measures, fig = compute_measure(real_cat, preds_cat, metric="roc_curve",
+#                                    create_plot=True, tags=tags)
+#    measures = compute_measure(real_cat, preds_cat, metric="roc_curve",
+#                               create_plot=False, tags=tags)
+#    measures, fig = compute_measure(real_cat, pred_cat, metric="lift10",
+#                                    create_plot=True, tags=['0'])
+#    measures = compute_measure(real_cat, pred_cat, metric="lift10",
+#                               create_plot=False, tags=['0'])
+#    measures, fig = compute_measure(real_cat, preds_cat, metric="lift10",
+#                                    create_plot=True, tags=tags)
+#    measures = compute_measure(real_cat, preds_cat, metric="lift10",
+#                               create_plot=True, tags=tags)
+#
+#    ########
+#    names = ['network inferred '+str(i) for i in range(10)]
+#    measure, fig = network_roc_comparison(G_x, G_y)
+#    measure, fig = network_roc_comparison(G_x, G_y, names)
+#    measure, fig = network_roc_comparison(Gs_x, G_y, ['network inferred 0'])
