@@ -44,7 +44,7 @@ def test():
 ##    test_metricresults.test()
 ##    test_collectionmeasures.test()
     test_combinatorics.test()
-##    test_perturbations.test()
+    test_perturbations.test()
 #    test_sklearntools.test()
 ##    test_perturbationtests.test()
 #    test_neighsmanager.test()
