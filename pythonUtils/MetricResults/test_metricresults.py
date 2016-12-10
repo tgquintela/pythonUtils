@@ -62,38 +62,32 @@ def test():
 
     ## Testing plotting
     ###################
-    import matplotlib.pyplot as plt
-    import warnings
-    try:
-        fig = plt.figure()
-    except Exception as error:
-        warnings.warn('Figure error: ' + repr(error) + str(error))
-#    fig = plot_roc_curves(fprs, tprs, measures, tags)
-#    fig = plot_roc_curve(fpr, tpr, measures[0])
-#    fig = plot_lift_curves(lifts, tags)
-#    fig = plot_lift_curve(lift)
-#
-#    ## Testing main computing funcitons
-#    ###################################
-#    measures, fig = compute_measure(real_cat, pred_cat, metric="roc_curve",
-#                                    create_plot=True, tags=['0'])
-#    measures = compute_measure(real_cat, pred_cat, metric="roc_curve",
-#                               create_plot=False, tags=['0'])
-#    measures, fig = compute_measure(real_cat, preds_cat, metric="roc_curve",
-#                                    create_plot=True, tags=tags)
-#    measures = compute_measure(real_cat, preds_cat, metric="roc_curve",
-#                               create_plot=False, tags=tags)
-#    measures, fig = compute_measure(real_cat, pred_cat, metric="lift10",
-#                                    create_plot=True, tags=['0'])
-#    measures = compute_measure(real_cat, pred_cat, metric="lift10",
-#                               create_plot=False, tags=['0'])
-#    measures, fig = compute_measure(real_cat, preds_cat, metric="lift10",
-#                                    create_plot=True, tags=tags)
-#    measures = compute_measure(real_cat, preds_cat, metric="lift10",
-#                               create_plot=True, tags=tags)
-#
-#    ########
-#    names = ['network inferred '+str(i) for i in range(10)]
-#    measure, fig = network_roc_comparison(G_x, G_y)
-#    measure, fig = network_roc_comparison(G_x, G_y, names)
-#    measure, fig = network_roc_comparison(Gs_x, G_y, ['network inferred 0'])
+    fig = plot_roc_curves(fprs, tprs, measures, tags)
+    fig = plot_roc_curve(fpr, tpr, measures[0])
+    fig = plot_lift_curves(lifts, tags)
+    fig = plot_lift_curve(lift)
+
+    ## Testing main computing funcitons
+    ###################################
+    measures, fig = compute_measure(real_cat, pred_cat, metric="roc_curve",
+                                    create_plot=True, tags=['0'])
+    measures = compute_measure(real_cat, pred_cat, metric="roc_curve",
+                               create_plot=False, tags=['0'])
+    measures, fig = compute_measure(real_cat, preds_cat, metric="roc_curve",
+                                    create_plot=True, tags=tags)
+    measures = compute_measure(real_cat, preds_cat, metric="roc_curve",
+                               create_plot=False, tags=tags)
+    measures, fig = compute_measure(real_cat, pred_cat, metric="lift10",
+                                    create_plot=True, tags=['0'])
+    measures = compute_measure(real_cat, pred_cat, metric="lift10",
+                               create_plot=False, tags=['0'])
+    measures, fig = compute_measure(real_cat, preds_cat, metric="lift10",
+                                    create_plot=True, tags=tags)
+    measures = compute_measure(real_cat, preds_cat, metric="lift10",
+                               create_plot=True, tags=tags)
+
+    ########
+    names = ['network inferred '+str(i) for i in range(10)]
+    measure, fig = network_roc_comparison(G_x, G_y)
+    measure, fig = network_roc_comparison(G_x, G_y, names)
+    measure, fig = network_roc_comparison(Gs_x, G_y, ['network inferred 0'])

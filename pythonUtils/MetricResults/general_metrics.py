@@ -8,6 +8,7 @@ The compute and plot of Statistical testing measures.
 
 import numpy as np
 import networkx as nx
+from scipy.sparse import issparse
 
 from sorting_measures import roc_comparison, compute_lift_curve
 from plotting_metricresults import plot_roc_curves, plot_lift_curves
@@ -46,16 +47,20 @@ def network_roc_comparison(G_inferred, G_real, names=None):
     else:
         names = ['Prediction']
 
+    def extend_net_values(G):
+        aux = nx.adjacency_matrix(G)
+        if issparse(aux):
+            aux = np.asarray(aux.todense()).ravel()
+        else:
+            aux = np.asarray(aux).ravel()
+        return aux
+
     # Extraction of the labels
     pred = []
     for i in range(len(G_inferred)):
-        aux = nx.adjacency_matrix(G_inferred[i])
-        aux = aux.reshape(np.prod(aux.shape))
-        aux = np.asarray(aux).reshape(-1)
+        aux = extend_net_values(G_inferred[i])
         pred.append(aux)
-    real = nx.adjacency_matrix(G_real)
-    real = real.reshape(np.prod(real.shape))
-    real = np.asarray(real).reshape(-1)
+    real = extend_net_values(G_real)
 
     # Computing the measure (TO CONTINUE)
     measure, fig = compute_measure(real, pred, tags=names)

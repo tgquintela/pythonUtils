@@ -52,14 +52,11 @@ class _PartitionIterator_list(object):
             train_index = [np.logical_not(e) for e in test_index]
             if indices:
                 train_index_aux, test_index_aux = [], []
-                print '0'*10
                 for i in range(len(self.n)):
                     train_index_aux.append(ind[i][train_index[i]])
                     test_index_aux.append(ind[i][test_index[i]])
-                print '1'*10
                 yield train_index_aux, test_index_aux
             else:
-                print '2'*10
                 yield train_index, test_index
 
     # Since subclasses must implement either _iter_test_masks or

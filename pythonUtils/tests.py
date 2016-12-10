@@ -26,25 +26,25 @@ import release
 import version
 
 ## Not inform about warnings
-#import warnings
-#with warnings.catch_warnings():
-#    warnings.simplefilter("ignore")
-#warnings.simplefilter("ignore")
+import warnings
+with warnings.catch_warnings():
+    warnings.simplefilter("ignore")
+warnings.simplefilter("ignore")
 
 
 def test():
     ## Tests of modules
-#    test_parallel_tools.test()
-#    test_logger.test()
-#    test_tui_tools.test()
-#    test_codingtext.test()
-#    test_numpytools.test()
-#    test_processtools.test()
-#    test_exploreDA.test()
+    test_parallel_tools.test()
+    test_logger.test()
+    test_tui_tools.test()
+    test_codingtext.test()
+    test_numpytools.test()
+    test_processtools.test()
+    test_exploreDA.test()
     test_metricresults.test()
-##    test_collectionmeasures.test()
-#    test_combinatorics.test()
-#    test_perturbations.test()
-#    test_sklearntools.test()
-##    test_perturbationtests.test()
-#    test_neighsmanager.test()
+    test_collectionmeasures.test()
+    test_combinatorics.test()
+    test_perturbations.test()
+    test_sklearntools.test()
+#    test_perturbationtests.test()
+    test_neighsmanager.test()
